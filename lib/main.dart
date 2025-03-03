@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:desafio_tecnico_devnology/pages/home_page.dart';
 import 'package:desafio_tecnico_devnology/services/database_api.dart';
+import 'package:desafio_tecnico_devnology/theme/theme_controller.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  fetchAirports();
+import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
+
+void main() async {
+  await GetStorage.init();
+  Get.lazyPut<ThemeController>(() => ThemeController());
   runApp(const MyApp());
 }
 
@@ -12,7 +19,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    ThemeController.to.loadThemeMode();
+
+    return GetMaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      home: HomePage(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

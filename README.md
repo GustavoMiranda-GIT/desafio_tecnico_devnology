@@ -1,21 +1,46 @@
 # desafio_tecnico_devnology
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
 
 Added:
+
+--------------------------------------------------------
+
 <uses-permission android:name="android.permission.INTERNET" />
+
+**********************************************
+dependencies:
+
 http: ^1.3.0
+
+-----------------------
+
+get: ^4.7.2
+
+----------------------------
+get_storage: ^2.1.1
+
+if
+
+Building with plugins requires symlink support.
+
+Please enable Developer Mode in your system settings. Run
+start ms-settings:developers
+to open settings.
+
+*active developer mode on windowns
+
+----------------------------------------
+
+flutter_localizations:
+sdk: flutter
+
+------------------------------------
+intl: ^0.19.0
+
+**************************************************
+flutter:
+
+generate: true
+
+**********************************************
+ndkVersion = "27.0.12077973"
