@@ -95,6 +95,48 @@ abstract class AppLocalizations {
     Locale('pt')
   ];
 
+  /// No description provided for @origin.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin'**
+  String get origin;
+
+  /// No description provided for @destination.
+  ///
+  /// In en, this message translates to:
+  /// **'Destination'**
+  String get destination;
+
+  /// No description provided for @one_way.
+  ///
+  /// In en, this message translates to:
+  /// **'One Way'**
+  String get one_way;
+
+  /// No description provided for @round_trip.
+  ///
+  /// In en, this message translates to:
+  /// **'Round Trip'**
+  String get round_trip;
+
+  /// No description provided for @departure.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure'**
+  String get departure;
+
+  /// No description provided for @return_string.
+  ///
+  /// In en, this message translates to:
+  /// **'Return'**
+  String get return_string;
+
+  /// No description provided for @company.
+  ///
+  /// In en, this message translates to:
+  /// **'company'**
+  String get company;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:

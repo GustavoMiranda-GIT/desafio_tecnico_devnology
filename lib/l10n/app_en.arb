@@ -1,6 +1,42 @@
 {
-  "theme": "Theme",
-  "@helloWorld": {
+  "origin": "Origin",
+  "@from": {
     "description": "The conventional newborn programmer greeting"
-  }
+  },
+
+  "destination": "Destination",
+    "@to": {
+      "description": "The conventional newborn programmer greeting"
+  },
+
+  "one_way": "One Way",
+    "@to": {
+        "description": "The conventional newborn programmer greeting"
+  },
+
+  "round_trip": "Round Trip",
+    "@to": {
+        "description": "The conventional newborn programmer greeting"
+  },
+
+  "departure": "Departure",
+      "@to": {
+          "description": "The conventional newborn programmer greeting"
+    },
+
+  "return_string": "Return",
+    "@to": {
+        "description": "The conventional newborn programmer greeting"
+  },
+
+  "company": "company",
+    "@to": {
+        "description": "The conventional newborn programmer greeting"
+    },
+
+
+  "theme": "Theme",
+    "@helloWorld": {
+        "description": "The conventional newborn programmer greeting"
+    }
 }

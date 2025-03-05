@@ -38,17 +38,17 @@ class Airport{
   }
 
   void printAirport(){
-    debugPrint('iata: ${this.iata}');
-    debugPrint('name: ${this.name}');
-    debugPrint('country: ${this.country}');
-    debugPrint('countryCode: ${this.countryCode}');
-    debugPrint('region: ${this.region}');
-    debugPrint('regionCode: ${this.regionCode}');
-    debugPrint('continent: ${this.continent}');
-    debugPrint('local: ${this.local}');
-    debugPrint('subLocal: ${this.subLocal}');
-    debugPrint('timeZone: ${this.timeZone}');
-    debugPrint('airports: ${this.airports}');
+    debugPrint('iata: $iata');
+    debugPrint('name: $name');
+    debugPrint('country: $country');
+    debugPrint('countryCode: $countryCode');
+    debugPrint('region: $region');
+    debugPrint('regionCode: $regionCode');
+    debugPrint('continent: $continent');
+    debugPrint('local: $local');
+    debugPrint('subLocal: $subLocal');
+    debugPrint('timeZone: $timeZone');
+    debugPrint('airports: $airports');
   }
 
 }

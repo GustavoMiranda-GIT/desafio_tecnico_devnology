@@ -1,6 +1,10 @@
 {
-  "theme": "Tema",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+   "origin": "Origem",
+   "destination": "Destino",
+   "one_way": "Ida",
+   "round_trip": "Ida e Volta",
+   "departure": "Ida",
+   "return_string": "Volta",
+   "company": "Companhia",
+   "theme": "Tema"
 }

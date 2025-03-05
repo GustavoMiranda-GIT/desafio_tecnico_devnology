@@ -10,6 +10,7 @@ import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
 void main() async {
   await GetStorage.init();
   Get.lazyPut<ThemeController>(() => ThemeController());
+  fetchAirports();
   runApp(const MyApp());
 }
 

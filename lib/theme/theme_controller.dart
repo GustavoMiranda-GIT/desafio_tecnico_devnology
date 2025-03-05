@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 ThemeData lightTheme = ThemeData(
+  inputDecorationTheme: ThemeController().inputTheme(),
     colorScheme: ColorScheme.light(
       surface: Colors.white,
     )
 );
 
 ThemeData darkTheme = ThemeData(
+    inputDecorationTheme: ThemeController().inputTheme(),
     colorScheme: ColorScheme.dark(
       surface: Colors.blue,
     )
@@ -37,4 +39,21 @@ class ThemeController extends GetxController {
   }
 
 
+  InputDecorationTheme inputTheme() => InputDecorationTheme(
+    filled: true,
+    contentPadding: EdgeInsets.all(15),
+
+  );
+
+
+
 }
+
+InputDecoration textFieldDecoration(String hintText) => InputDecoration(
+    hintText: hintText,
+    prefixIcon: Padding(
+      padding: const EdgeInsets.all(12),
+      child: const Icon(Icons.flight_takeoff),
+    )
+
+);
