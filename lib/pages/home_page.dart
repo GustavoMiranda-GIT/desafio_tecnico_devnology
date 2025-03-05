@@ -2,7 +2,11 @@ import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
 import 'package:desafio_tecnico_devnology/project_widgets/date_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:desafio_tecnico_devnology/theme/theme_controller.dart';
+import 'package:desafio_tecnico_devnology/models/flight_model.dart';
 import 'package:get/get.dart';
+
+import '../models/flight_model.dart';
+import '../services/database_api.dart';
 
 enum FlightType { round, oneWay }
 
@@ -99,7 +103,12 @@ class _HomePageState extends State<HomePage> {
           ),
           //------------------------------------------------------------------------------
           TextButton(
-            onPressed: (){  controller.changeThemeMode();},
+            onPressed: () async {
+              List<String> c = ["AMERICAN AIRLINES", "GOL", "IBERIA", "INTERLINE", "LATAM", "AZUL", "TAP"];
+              String code = await DatabaseApi.fetchTicketsCode(c, "2/12/2025", "20/12/2025", "GRU", "MIA", "IdaVolta");
+              Flight fli = await DatabaseApi.fetchTicketsList(code);
+              fli.printFlight();
+            },
             child: Text(AppLocalizations.of(context)!.theme),
           ),
 

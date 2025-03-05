@@ -52,27 +52,3 @@ class Airport{
   }
 
 }
-
-
-/* See why it doest work later | Font: https://docs.flutter.dev/cookbook/networking/fetch-data
-
-   factory Airport.fromJson(Map<String, dynamic> json) {
-    return switch(json){
-      {'Iata': String iata, 'Nome': String name, 'Pais': String country, 'PaisCodigo': String countryCode,
-      'Regiao': String region, 'RegiaoCodigo': String regionCode,'Continente': String continent ,
-      'Local': String local, 'SubLocal': String subLocal, 'FusoHorario': String timeZone} => Airport(
-        iata: iata,
-        name: name,
-        country: country,
-        countryCode: countryCode,
-        region: region,
-        regionCode: regionCode,
-        continent: continent,
-        local: local,
-        subLocal: subLocal,
-        timeZone: timeZone,
-
-      ), _=> throw const FormatException('Failed to parse airport.'),
-    };
-  }
- */

@@ -36,6 +36,8 @@ class MyApp extends StatelessWidget {
 }
 
 Future<void> fetchAirports() async{
-  final airport = await DatabaseApi.fetchAirports();
-  airport.printAirport();
+ // DatabaseApi.fetchTickets();
+  //DatabaseApi.fetchTicketsList();
+  //final airport = await DatabaseApi.fetchAirports();
+  //airport.printAirport();
 }
