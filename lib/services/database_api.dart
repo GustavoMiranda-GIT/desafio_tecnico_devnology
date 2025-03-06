@@ -23,7 +23,7 @@ class DatabaseApi {
     }
   }
 
-  static Future<String> fetchTicketsCode(List<String> companies, String departure, String returnDate,
+  static Future<String> fetchFlightsListCode(List<String> companies, String departure, String returnDate,
       String origin, String destination, String type) async {
 
     final response = await http.post(
@@ -49,22 +49,17 @@ class DatabaseApi {
 
   }
 
-  static Future<Flight> fetchTicketsList(String searchCode) async {
+  static Future<List<Flight>> fetchFlightsList(String searchCode) async {
 
     final response = await http.get(Uri.parse(BASE_URL + TICKETS_LIST_URL + searchCode));
-    final allFlights = jsonDecode(response.body)['Voos'];
 
     if (response.statusCode == 200) {
-      //print(allFlights[0]);
-      Flight flight = Flight.fromJson(allFlights[0] as Map<String, dynamic>);
-
-      return flight;
+      final jsonFlightList = jsonDecode(response.body)['Voos'] as List;
+      return jsonFlightList.map((json)=> Flight.fromJson(json)).toList(); //Usa o metodo map para transfomar a lista de json em List<Flight>
     } else {
-      throw Exception('Failed to load tickets list');
+      throw Exception('Failed to load flights list');
     }
 
-
   }
-
 
 }

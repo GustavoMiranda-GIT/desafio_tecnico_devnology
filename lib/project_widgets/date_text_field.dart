@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../l10n/app_localizations.dart';
 
 class DateTextField extends StatefulWidget {
   String hintText;

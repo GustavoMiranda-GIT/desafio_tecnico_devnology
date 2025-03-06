@@ -5,7 +5,8 @@ import 'package:get_storage/get_storage.dart';
 ThemeData lightTheme = ThemeData(
   inputDecorationTheme: ThemeController().inputTheme(),
     colorScheme: ColorScheme.light(
-      surface: Colors.white,
+      surface: Colors.white70,
+      primary: Colors.white,
     )
 );
 
@@ -17,14 +18,18 @@ ThemeData darkTheme = ThemeData(
 );
 
 class ThemeController extends GetxController {
-  RxBool _isDark = false.obs;
+  final RxBool _isDark = false.obs;
   final _storage = GetStorage();
   final String _keyIsDark = 'isDark';
 
   static ThemeController get to => Get.find();
 
   loadThemeMode() async {
-    _isDark.value = await _storage.read(_keyIsDark);
+    try {
+      _isDark.value = await _storage.read(_keyIsDark);
+    }catch(e){
+      _isDark.value = false;
+    }
     _setThemeMode();
   }
 
