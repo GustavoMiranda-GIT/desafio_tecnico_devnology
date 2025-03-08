@@ -30,5 +30,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get company => 'company';
 
   @override
+  String get stop => 'Stop';
+
+  @override
+  String get stops => 'Stops';
+
+  @override
+  String get direct => 'Direct';
+
+  @override
+  String get date_display_format => 'MM/dd';
+
+  @override
+  String get date_display_format_YYYY => 'MM/dd/yyyy';
+
+  @override
+  String get try_again => 'Try Again';
+
+  @override
+  String get boarding_fee => 'Boarding Fee';
+
+  @override
   String get theme => 'Theme';
 }

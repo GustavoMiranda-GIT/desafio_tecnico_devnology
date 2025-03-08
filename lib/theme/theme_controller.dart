@@ -2,19 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+TextTheme mainTextTheme = TextTheme(
+  headlineLarge: TextStyle(
+    fontSize: 34,
+  ),
+  headlineMedium: TextStyle(
+    fontSize: 24,
+  ),
+  headlineSmall: TextStyle(
+    fontSize: 20,
+  ),
+  bodyLarge: TextStyle(
+    fontSize: 16,
+  ),
+  bodyMedium: TextStyle(
+    fontSize: 14,
+  ),
+  bodySmall: TextStyle(
+    fontSize: 12,
+  )
+
+);
+
 ThemeData lightTheme = ThemeData(
   inputDecorationTheme: ThemeController().inputTheme(),
     colorScheme: ColorScheme.light(
-      surface: Colors.white70,
+      surface: Color(0xFFEFEFEF),
       primary: Colors.white,
-    )
+    ),
+    textTheme: mainTextTheme,
 );
 
 ThemeData darkTheme = ThemeData(
     inputDecorationTheme: ThemeController().inputTheme(),
     colorScheme: ColorScheme.dark(
       surface: Colors.blue,
-    )
+    ),
+    textTheme: mainTextTheme,
 );
 
 class ThemeController extends GetxController {
@@ -46,7 +70,16 @@ class ThemeController extends GetxController {
 
   InputDecorationTheme inputTheme() => InputDecorationTheme(
     filled: true,
-    contentPadding: EdgeInsets.all(15),
+    fillColor: Colors.white,
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.white, width: 4),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.white, width: 4),
+      borderRadius: BorderRadius.circular(12),
+    ),
+
 
   );
 

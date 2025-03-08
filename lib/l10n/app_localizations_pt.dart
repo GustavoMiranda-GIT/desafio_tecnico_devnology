@@ -30,5 +30,26 @@ class AppLocalizationsPt extends AppLocalizations {
   String get company => 'Companhia';
 
   @override
+  String get stop => 'Parada';
+
+  @override
+  String get stops => 'Paradas';
+
+  @override
+  String get direct => 'Direto';
+
+  @override
+  String get date_display_format => 'dd/MM';
+
+  @override
+  String get date_display_format_YYYY => 'dd/MM/yyyy';
+
+  @override
+  String get try_again => 'Tentar Novamente';
+
+  @override
+  String get boarding_fee => 'Taxa de Embarque';
+
+  @override
   String get theme => 'Tema';
 }

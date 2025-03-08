@@ -137,6 +137,48 @@ abstract class AppLocalizations {
   /// **'company'**
   String get company;
 
+  /// No description provided for @stop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get stop;
+
+  /// No description provided for @stops.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops'**
+  String get stops;
+
+  /// No description provided for @direct.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct'**
+  String get direct;
+
+  /// No description provided for @date_display_format.
+  ///
+  /// In en, this message translates to:
+  /// **'MM/dd'**
+  String get date_display_format;
+
+  /// No description provided for @date_display_format_YYYY.
+  ///
+  /// In en, this message translates to:
+  /// **'MM/dd/yyyy'**
+  String get date_display_format_YYYY;
+
+  /// No description provided for @try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get try_again;
+
+  /// No description provided for @boarding_fee.
+  ///
+  /// In en, this message translates to:
+  /// **'Boarding Fee'**
+  String get boarding_fee;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:

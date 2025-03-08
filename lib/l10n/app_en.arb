@@ -34,6 +34,39 @@
         "description": "The conventional newborn programmer greeting"
     },
 
+  "stop": "Stop",
+      "@to": {
+          "description": "The conventional newborn programmer greeting"
+      },
+  "stops": "Stops",
+        "@to": {
+            "description": "The conventional newborn programmer greeting"
+        },
+
+  "direct": "Direct",
+      "@to": {
+          "description": "The conventional newborn programmer greeting"
+      },
+
+  "date_display_format": "MM/dd",
+        "@to": {
+            "description": "The conventional newborn programmer greeting"
+        },
+
+  "date_display_format_YYYY": "MM/dd/yyyy",
+        "@to": {
+            "description": "The conventional newborn programmer greeting"
+        },
+
+  "try_again": "Try Again",
+          "@to": {
+              "description": "The conventional newborn programmer greeting"
+          },
+
+  "boarding_fee": "Boarding Fee",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
   "theme": "Theme",
     "@helloWorld": {

@@ -6,6 +6,10 @@ enum FlightsListState {start, loading, success, error}
 class FlightsListController extends GetxController{
   var flightsList =[];
   Rx<FlightsListState> state = FlightsListState.start.obs;
+  RxBool usingMiles = false.obs;
+  int numAdult = 0;
+  int numChild = 0;
+  int numInfant = 0;
 
 
   Future start(String searchCode) async {

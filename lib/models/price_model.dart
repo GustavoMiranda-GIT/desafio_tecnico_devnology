@@ -3,22 +3,22 @@ import 'package:flutter/foundation.dart';
 
 class Price{
   final double adult;
-  final double infant;
   final double child;
+  final double infant;
   final bool executive;
   final BaggageLimit baggageLimit;
   final double boardingFee;
   final String typeValue;
   final String typeMiles;
 
-  const Price({required this.adult,required this.infant,required this.child,required this.executive,required this.baggageLimit,
+  const Price({required this.adult,required this.child, required this.infant,required this.executive,required this.baggageLimit,
       required this.boardingFee,required this.typeValue,required this.typeMiles});
 
   factory Price.fromJson(Map<String, dynamic> json){
     return Price(
         adult: double.parse(json['Adulto'].toString()),
-        infant: double.parse(json['Bebe'].toString()),
         child: double.parse(json['Crianca'].toString()),
+        infant: double.parse(json['Bebe'].toString()),
         executive: json['Executivo'],
         baggageLimit: BaggageLimit.fromJson(json['LimiteBagagem']),
         boardingFee: double.parse(json['TaxaEmbarque'].toString()),
@@ -30,8 +30,8 @@ class Price{
   void printPrice()
   {
     debugPrint('   adult: $adult');
-    debugPrint('   infant: $infant');
     debugPrint('   child: $child');
+    debugPrint('   infant: $infant');
     debugPrint('   executive: $executive');
     debugPrint('   baggageLimit:');
     baggageLimit.printBaggageLimit();

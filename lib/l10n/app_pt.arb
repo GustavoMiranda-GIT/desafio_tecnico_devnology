@@ -6,5 +6,12 @@
    "departure": "Ida",
    "return_string": "Volta",
    "company": "Companhia",
+   "stop": "Parada",
+   "stops": "Paradas",
+   "direct": "Direto",
+   "date_display_format": "dd/MM",
+   "date_display_format_YYYY": "dd/MM/yyyy",
+   "try_again": "Tentar Novamente",
+   "boarding_fee": "Taxa de Embarque",
    "theme": "Tema"
 }

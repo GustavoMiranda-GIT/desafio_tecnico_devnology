@@ -1,6 +1,7 @@
 import 'package:desafio_tecnico_devnology/models/connection_model.dart';
 import 'package:desafio_tecnico_devnology/models/price_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 
 class Flight {
@@ -8,8 +9,8 @@ class Flight {
   final String direction;
   final String origin;
   final String destination;
-  final String boarding;
-  final String landing;
+  final DateTime boarding;
+  final DateTime landing;
   final List<Connection> connections;
   final int nConnections;
   final String duration;
@@ -17,8 +18,10 @@ class Flight {
   final List<Price> prices;
   final List<Price> miles;
 
+  late final String boardingTime = DateFormat.Hm().format(boarding);
+  late final String landingTime = DateFormat.Hm().format(landing);
 
-  const Flight({required this.company,required this.direction,required this.origin,required this.destination,required this.boarding,required this.landing,
+  Flight({required this.company,required this.direction,required this.origin,required this.destination,required this.boarding,required this.landing,
     required this.connections,required this.nConnections,required this.duration,required this.flightNumber,required this.prices,required this.miles});
 
   factory Flight.fromJson(Map<String, dynamic> json){
@@ -27,8 +30,8 @@ class Flight {
         direction: json['Sentido'],
         origin: json['Origem'],
         destination: json['Destino'],
-        boarding: json['Embarque'],
-        landing: json['Desembarque'],
+        boarding: parseDate(json['Embarque']),
+        landing: parseDate(json['Desembarque']),
         connections: parseConnections(json['Conexoes']),
         nConnections: json['NumeroConexoes'],
         duration: json['Duracao'],
@@ -37,6 +40,8 @@ class Flight {
         miles: parsePrices(json['Milhas']),
     );
   }
+
+
 
   static List<Price> parsePrices(jsonPrices){
     List<Price> listPrices=[];
@@ -58,6 +63,11 @@ class Flight {
     return listConnections;
   }
 
+  static DateTime parseDate(String inputDate){
+    DateFormat date = DateFormat('dd/MM/yyyy HH:mm');
+    DateTime finalDate = date.parse(inputDate);
+    return finalDate;
+  }
 
   void printFlight(){
     debugPrint('company: $company');
