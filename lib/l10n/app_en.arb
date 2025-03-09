@@ -68,6 +68,67 @@
                 "description": "The conventional newborn programmer greeting"
             },
 
+ "adult": "Adult",
+             "@to": {
+                 "description": "The conventional newborn programmer greeting"
+             },
+
+"child": "Child",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"infant": "Infant",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+},
+"cancel": "Cancel",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"submit": "Submit",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"select_companies": "Select Companies",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"empty_field": "Empty Field",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"max": "Max",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"min": "Min",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"infant_error_message": "Number of adults is less than infants",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+
+"search": "Search",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+
+
+
+
+
+
   "theme": "Theme",
     "@helloWorld": {
         "description": "The conventional newborn programmer greeting"

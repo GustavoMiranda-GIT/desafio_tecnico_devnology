@@ -3,21 +3,19 @@ import 'package:desafio_tecnico_devnology/models/airport_model.dart';
 import 'package:desafio_tecnico_devnology/models/flight_model.dart';
 import 'package:http/http.dart' as http;
 
-
-
 const String BASE_URL = 'https://buscamilhas.mock.gralmeidan.dev/';
-const String AIRPORTS_URL = 'aeroportos?q=BHZ';
+const String AIRPORTS_URL = 'aeroportos';
 const String TICKETS_CODE_URL = 'busca/criar';
 const String TICKETS_LIST_URL = 'busca/';
 
 class DatabaseApi {
 
-  static Future<Airport> fetchAirports() async {
-
+  static Future<List<Airport>> fetchAirports() async {
     final response = await http.get(Uri.parse(BASE_URL + AIRPORTS_URL));
 
     if (response.statusCode == 200) {
-      return Airport.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      final jsonAirportsList = jsonDecode(response.body) as List;
+      return jsonAirportsList.map((json)=> Airport.fromJson(json)).toList(); //Usa o metodo map para transfomar a lista de json em List<Airport>
     } else {
       throw Exception('Failed to load airports');
     }

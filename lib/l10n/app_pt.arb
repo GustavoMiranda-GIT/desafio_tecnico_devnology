@@ -13,5 +13,16 @@
    "date_display_format_YYYY": "dd/MM/yyyy",
    "try_again": "Tentar Novamente",
    "boarding_fee": "Taxa de Embarque",
+   "adult": "Adulto",
+   "child": "Criança",
+   "infant": "Bebé",
+   "cancel": "Cancelar",
+   "submit": "Enviar",
+   "select_companies": "Selecione Empresas",
+   "empty_field": "Campo Vazio",
+   "max": "Máximo",
+   "min": "Mínimo",
+   "infant_error_message": "Número de adultos é menor que o bebês",
+   "search": "Pesquisar",
    "theme": "Tema"
 }

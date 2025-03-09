@@ -1,11 +1,13 @@
 import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
 class DateTextField extends StatefulWidget {
-  String hintText;
+  final String hintText;
+  final Rx<String> dateValue;
 
-  DateTextField({super.key, required this.hintText});
+  const DateTextField({super.key, required this.hintText, required this.dateValue});
 
   @override
   State<DateTextField> createState() => _DateTextFieldState();
@@ -16,11 +18,7 @@ class _DateTextFieldState extends State<DateTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(12),
-      elevation: 8,
-      child: TextField(
-        style: Theme.of(context).textTheme.headlineMedium,
+    return TextField(
         readOnly: true,
         decoration: InputDecoration(
             hintText: widget.hintText,
@@ -37,14 +35,14 @@ class _DateTextFieldState extends State<DateTextField> {
               context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2100));
 
           if(dateTime != null){
-            setState(() {
+            widget.dateValue.value = DateFormat("dd/MM/yyyy").format(dateTime);
+            if(context.mounted) {
               datePicker.text = DateFormat(AppLocalizations.of(context)!.date_display_format_YYYY).format(dateTime);
-            });
+            }
           }
         },
 
-      ),
-    );
+      );
   }
 
 

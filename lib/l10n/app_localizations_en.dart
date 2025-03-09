@@ -51,5 +51,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get boarding_fee => 'Boarding Fee';
 
   @override
+  String get adult => 'Adult';
+
+  @override
+  String get child => 'Child';
+
+  @override
+  String get infant => 'Infant';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get submit => 'Submit';
+
+  @override
+  String get select_companies => 'Select Companies';
+
+  @override
+  String get empty_field => 'Empty Field';
+
+  @override
+  String get max => 'Max';
+
+  @override
+  String get min => 'Min';
+
+  @override
+  String get infant_error_message => 'Number of adults is less than infants';
+
+  @override
+  String get search => 'Search';
+
+  @override
   String get theme => 'Theme';
 }

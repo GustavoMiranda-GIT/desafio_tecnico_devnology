@@ -33,6 +33,10 @@ class Airport{
 
 
   static List<String> parseAirport(jsonAirports){
+    if(jsonAirports == null) {
+      return List<String>.empty();
+    }
+
     List<String> listAirports = List<String>.from(jsonAirports);
     return listAirports;
   }

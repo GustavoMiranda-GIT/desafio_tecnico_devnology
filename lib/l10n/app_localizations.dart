@@ -179,6 +179,72 @@ abstract class AppLocalizations {
   /// **'Boarding Fee'**
   String get boarding_fee;
 
+  /// No description provided for @adult.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult'**
+  String get adult;
+
+  /// No description provided for @child.
+  ///
+  /// In en, this message translates to:
+  /// **'Child'**
+  String get child;
+
+  /// No description provided for @infant.
+  ///
+  /// In en, this message translates to:
+  /// **'Infant'**
+  String get infant;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @select_companies.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Companies'**
+  String get select_companies;
+
+  /// No description provided for @empty_field.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty Field'**
+  String get empty_field;
+
+  /// No description provided for @max.
+  ///
+  /// In en, this message translates to:
+  /// **'Max'**
+  String get max;
+
+  /// No description provided for @min.
+  ///
+  /// In en, this message translates to:
+  /// **'Min'**
+  String get min;
+
+  /// No description provided for @infant_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of adults is less than infants'**
+  String get infant_error_message;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:

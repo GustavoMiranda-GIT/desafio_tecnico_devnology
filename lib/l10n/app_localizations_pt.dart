@@ -51,5 +51,38 @@ class AppLocalizationsPt extends AppLocalizations {
   String get boarding_fee => 'Taxa de Embarque';
 
   @override
+  String get adult => 'Adulto';
+
+  @override
+  String get child => 'Criança';
+
+  @override
+  String get infant => 'Bebé';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get submit => 'Enviar';
+
+  @override
+  String get select_companies => 'Selecione Empresas';
+
+  @override
+  String get empty_field => 'Campo Vazio';
+
+  @override
+  String get max => 'Máximo';
+
+  @override
+  String get min => 'Mínimo';
+
+  @override
+  String get infant_error_message => 'Número de adultos é menor que o bebês';
+
+  @override
+  String get search => 'Pesquisar';
+
+  @override
   String get theme => 'Tema';
 }

@@ -25,18 +25,21 @@ TextTheme mainTextTheme = TextTheme(
 );
 
 ThemeData lightTheme = ThemeData(
-  inputDecorationTheme: ThemeController().inputTheme(),
+  brightness: Brightness.light,
     colorScheme: ColorScheme.light(
-      surface: Color(0xFFEFEFEF),
-      primary: Colors.white,
+      surface: Colors.grey.shade400,
+      primary: Colors.grey.shade300,
+      secondary: Colors.grey.shade200
     ),
     textTheme: mainTextTheme,
 );
 
 ThemeData darkTheme = ThemeData(
-    inputDecorationTheme: ThemeController().inputTheme(),
+  brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
-      surface: Colors.blue,
+      surface: Colors.grey.shade900,
+      primary: Colors.grey.shade800,
+      secondary: Colors.grey.shade700
     ),
     textTheme: mainTextTheme,
 );
@@ -67,10 +70,9 @@ class ThemeController extends GetxController {
     await _storage.write(_keyIsDark, _isDark.value);
   }
 
-
+/*
   InputDecorationTheme inputTheme() => InputDecorationTheme(
     filled: true,
-    fillColor: Colors.white,
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.white, width: 4),
       borderRadius: BorderRadius.circular(12),
@@ -82,16 +84,7 @@ class ThemeController extends GetxController {
 
 
   );
-
+*/
 
 
 }
-
-InputDecoration textFieldDecoration(String hintText) => InputDecoration(
-    hintText: hintText,
-    prefixIcon: Padding(
-      padding: const EdgeInsets.all(12),
-      child: const Icon(Icons.flight_takeoff),
-    )
-
-);
