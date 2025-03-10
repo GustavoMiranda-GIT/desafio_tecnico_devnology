@@ -84,5 +84,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get search => 'Search';
 
   @override
+  String get valid_value => 'Please select a valid value';
+
+  @override
+  String get origin_destination_same => 'Origin and destination cannot be the same';
+
+  @override
+  String get date_before => 'Departure date must be before return date';
+
+  @override
+  String get miles => 'Miles';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get selected => 'Selected';
+
+  @override
   String get theme => 'Theme';
 }

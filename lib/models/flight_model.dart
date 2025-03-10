@@ -3,10 +3,12 @@ import 'package:desafio_tecnico_devnology/models/price_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
+enum FlightDirection { departure, returnDirection}
 
 class Flight {
   final String company;
   final String direction;
+  final FlightDirection flightDirection;
   final String origin;
   final String destination;
   final DateTime boarding;
@@ -21,13 +23,14 @@ class Flight {
   late final String boardingTime = DateFormat.Hm().format(boarding);
   late final String landingTime = DateFormat.Hm().format(landing);
 
-  Flight({required this.company,required this.direction,required this.origin,required this.destination,required this.boarding,required this.landing,
+  Flight({required this.company,required this.direction, required this.flightDirection,required this.origin,required this.destination,required this.boarding,required this.landing,
     required this.connections,required this.nConnections,required this.duration,required this.flightNumber,required this.prices,required this.miles});
 
   factory Flight.fromJson(Map<String, dynamic> json){
     return Flight(
         company: json['Companhia'],
         direction: json['Sentido'],
+        flightDirection: setFlightDirection(json['Sentido']),
         origin: json['Origem'],
         destination: json['Destino'],
         boarding: parseDate(json['Embarque']),
@@ -42,6 +45,15 @@ class Flight {
   }
 
 
+  static FlightDirection setFlightDirection(String type){
+    if(type.compareTo("Ida") == 0)
+    {
+        return FlightDirection.departure;
+    }else
+    {
+      return FlightDirection.returnDirection;
+    }
+  }
 
   static List<Price> parsePrices(jsonPrices){
     List<Price> listPrices=[];

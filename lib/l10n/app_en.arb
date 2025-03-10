@@ -117,16 +117,40 @@
                 "description": "The conventional newborn programmer greeting"
             },
 
-
 "search": "Search",
             "@to": {
                 "description": "The conventional newborn programmer greeting"
             },
 
+"valid_value": "Please select a valid value",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
+"origin_destination_same": "Origin and destination cannot be the same",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
+"date_before": "Departure date must be before return date",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
+"miles": "Miles",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
+"select": "Select",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
+
+"selected": "Selected",
+            "@to": {
+                "description": "The conventional newborn programmer greeting"
+            },
 
 
   "theme": "Theme",

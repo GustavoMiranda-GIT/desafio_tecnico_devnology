@@ -84,5 +84,23 @@ class AppLocalizationsPt extends AppLocalizations {
   String get search => 'Pesquisar';
 
   @override
+  String get valid_value => 'Selecione um valor válido';
+
+  @override
+  String get origin_destination_same => 'Origem e destino não podem ser iguais';
+
+  @override
+  String get date_before => 'Data de ida deve ser antes da de volta';
+
+  @override
+  String get miles => 'Milhas ';
+
+  @override
+  String get select => 'Selecionar';
+
+  @override
+  String get selected => 'Selecionado';
+
+  @override
   String get theme => 'Tema';
 }

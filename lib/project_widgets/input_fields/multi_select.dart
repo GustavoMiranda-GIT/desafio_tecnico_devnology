@@ -22,16 +22,6 @@ class _MultiSelectState extends State<MultiSelect> {
     });
   }
 
-  // this function is called when the Cancel button is pressed
-  void cancel() {
-    Navigator.pop(context);
-  }
-
-// this function is called when the Submit button is tapped
-  void submit() {
-    Navigator.pop(context, selectedItems);
-  }
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -50,11 +40,11 @@ class _MultiSelectState extends State<MultiSelect> {
       ),
       actions: [
         TextButton(
-          onPressed: cancel,
+          onPressed: (){ Navigator.pop(context);},
           child: Text(AppLocalizations.of(context)!.cancel),
         ),
         ElevatedButton(
-          onPressed: submit,
+          onPressed: (){Navigator.pop(context, selectedItems);},
           child: Text(AppLocalizations.of(context)!.submit),
         ),
       ],

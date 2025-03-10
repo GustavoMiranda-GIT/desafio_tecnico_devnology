@@ -31,7 +31,7 @@ class InputTextField extends StatelessWidget {
 
       fieldViewBuilder: (context, controller, focusNode, onEditingComplete){
         return TextFormField(
-          onChanged: (text){textSelected.value=text;},
+          onChanged: (text){textSelected.value = text;},
           controller: controller,
           focusNode: focusNode,
           onEditingComplete: onEditingComplete,
@@ -43,7 +43,6 @@ class InputTextField extends StatelessWidget {
               )
           ),
           validator: (value){
-            print(value);
             if(value!.isEmpty) {
               return AppLocalizations.of(context)!.empty_field;
             }else{

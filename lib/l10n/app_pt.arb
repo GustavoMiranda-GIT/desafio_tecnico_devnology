@@ -24,5 +24,11 @@
    "min": "Mínimo",
    "infant_error_message": "Número de adultos é menor que o bebês",
    "search": "Pesquisar",
+   "valid_value": "Selecione um valor válido",
+   "origin_destination_same": "Origem e destino não podem ser iguais",
+   "date_before": "Data de ida deve ser antes da de volta",
+   "miles": "Milhas ",
+   "select": "Selecionar",
+   "selected": "Selecionado",
    "theme": "Tema"
 }

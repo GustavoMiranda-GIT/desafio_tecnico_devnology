@@ -245,6 +245,42 @@ abstract class AppLocalizations {
   /// **'Search'**
   String get search;
 
+  /// No description provided for @valid_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a valid value'**
+  String get valid_value;
+
+  /// No description provided for @origin_destination_same.
+  ///
+  /// In en, this message translates to:
+  /// **'Origin and destination cannot be the same'**
+  String get origin_destination_same;
+
+  /// No description provided for @date_before.
+  ///
+  /// In en, this message translates to:
+  /// **'Departure date must be before return date'**
+  String get date_before;
+
+  /// No description provided for @miles.
+  ///
+  /// In en, this message translates to:
+  /// **'Miles'**
+  String get miles;
+
+  /// No description provided for @select.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// No description provided for @selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get selected;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:

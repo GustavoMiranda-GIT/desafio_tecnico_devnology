@@ -1,16 +1,16 @@
+import 'package:desafio_tecnico_devnology/controllers/flights_list_controller.dart';
 import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
 import 'package:desafio_tecnico_devnology/models/airport_model.dart';
-import 'package:desafio_tecnico_devnology/project_widgets/date_text_field.dart';
-import 'package:desafio_tecnico_devnology/project_widgets/input_text_field.dart';
-import 'package:desafio_tecnico_devnology/project_widgets/multi_select.dart';
-import 'package:desafio_tecnico_devnology/project_widgets/number_input_field.dart';
+import 'package:desafio_tecnico_devnology/project_widgets/input_fields/date_text_field.dart';
+import 'package:desafio_tecnico_devnology/project_widgets/input_fields/input_text_field.dart';
+import 'package:desafio_tecnico_devnology/project_widgets/input_fields/multi_select.dart';
+import 'package:desafio_tecnico_devnology/project_widgets/input_fields/number_input_field.dart';
 import 'package:desafio_tecnico_devnology/theme/theme_controller.dart';
+import 'package:desafio_tecnico_devnology/services/database_api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../services/database_api.dart';
+import 'package:intl/intl.dart';
 import 'flights_list_page.dart';
-
-enum FlightType { round, oneWay }
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,11 +25,11 @@ class _HomePageState extends State<HomePage> {
   late List<Airport> airportsList = [];
   late List<String> autoCompleteList = [];
 
-  FlightType? flightType = FlightType.round;
+  SearchType searchType = SearchType.round;
   Rx<String> origin = "".obs;
   Rx<String> destination = "".obs;
-  Rx<String> departure = "".obs;
-  Rx<String> returnDate = "".obs;
+  Rx<DateTime> departure = DateTime.now().obs;
+  Rx<DateTime> returnDate = DateTime.now().obs;
   RxList<String> selectedCompanies = <String>[].obs;
   TextEditingController companiesController = TextEditingController();
 
@@ -37,20 +37,11 @@ class _HomePageState extends State<HomePage> {
   int numChild = 0;
   int numInfant = 0;
 
-
-  Future<void> fetchAirports() async{
-    final airportsList = await DatabaseApi.fetchAirports();
-    for (var e in airportsList) {
-      autoCompleteList.add("${e.iata} - ${e.name}");
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     fetchAirports();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                     hintText: AppLocalizations.of(context)!.origin,
                     textSelected: origin,
                     autoCompleteData: autoCompleteList,
-                    validateFunction: validateLocation,
+                    validateFunction: validateOrigin,
                   ),
 
                   InputTextField(
@@ -96,18 +87,18 @@ class _HomePageState extends State<HomePage> {
                     hintText: AppLocalizations.of(context)!.destination,
                     textSelected: destination,
                     autoCompleteData: autoCompleteList,
-                    validateFunction: validateLocation,
+                    validateFunction: validateDestination,
                   ),
 
                   Row(
                     children: [
                       Expanded(
-                        child: RadioListTile<FlightType>(
+                        child: RadioListTile<SearchType>(
                             title: Text(AppLocalizations.of(context)!.round_trip),
-                            value: FlightType.round,
-                            groupValue: flightType,
+                            value: SearchType.round,
+                            groupValue: searchType,
                             onChanged: (val){ setState(() {
-                              flightType = val;
+                                searchType = val!;
                             }
                             );
                             }
@@ -115,12 +106,13 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       Expanded(
-                        child: RadioListTile<FlightType>(
+                        child: RadioListTile<SearchType>(
                             title: Text(AppLocalizations.of(context)!.one_way),
-                            value: FlightType.oneWay,
-                            groupValue: flightType,
+                            value: SearchType.oneWay,
+                            groupValue: searchType,
                             onChanged: (val){ setState(() {
-                              flightType = val;
+                              searchType = val!;
+
                             }
                             );
                             }
@@ -129,20 +121,27 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
 
-                  DateTextField(hintText: AppLocalizations.of(context)!.departure, dateValue: departure),
+                  DateTextField(hintText: AppLocalizations.of(context)!.departure, dateValue: departure, validateFunction: validateDate,),
 
                   Visibility(
-                    visible: flightType == FlightType.round,
-                    child: DateTextField(hintText: AppLocalizations.of(context)!.return_string, dateValue: returnDate),
+                    visible: searchType == SearchType.round,
+                    child: DateTextField(hintText: AppLocalizations.of(context)!.return_string, dateValue: returnDate, validateFunction: validateDate,),
                   ),
 
-                  TextField(
+
+                  TextFormField(
                       readOnly: true,
                       controller: companiesController,
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)!.company.capitalize,
                       ),
-                      onTap: (){ showMultiSelect();}
+                      onTap: (){ showMultiSelect();},
+                      validator: (value){
+                        if(value!.isEmpty) {
+                          return AppLocalizations.of(context)!.empty_field;
+                        }
+                        return null;
+                      },
                   ),
 
                   NumberInputField(hintText: AppLocalizations.of(context)!.adult,validateFunction: validateNumAdults),
@@ -160,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Colors.blue,
                 padding: EdgeInsets.symmetric(vertical: 16,horizontal: 40)
               ),
-              child: Text(AppLocalizations.of(context)!.search),
+              child: Text(AppLocalizations.of(context)!.search,style: Theme.of(context).textTheme.bodyLarge),
             ),
 
 
@@ -170,38 +169,77 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-Future<void> findFlights() async {
+  Future<void> fetchAirports() async{
+    airportsList = await DatabaseApi.fetchAirports();
+    for (var e in airportsList) {
+      autoCompleteList.add("${e.iata} - ${e.name}");
+    }
+  }
 
-  if(!formKey.currentState!.validate()) {
+  Future<void> findFlights() async {
+
+    if(!formKey.currentState!.validate()) {
     return;
-  }
-  print(flightType.toString());
-  print(origin.value.substring(0,3));
-  print(destination.value.substring(0,3));
-  print(departure.value);
-  print(returnDate.value);
-  print(selectedCompanies);
-  print(numAdult);
-  print(numChild);
-  print(numInfant);
+    }
 
-  String searchCode = await DatabaseApi.fetchFlightsListCode(
-      selectedCompanies,
-      departure.value,
-      returnDate.value,
-      origin.value.substring(0,3),
-      destination.value.substring(0,3),
-      (flightType == FlightType.round ? "IdaVolta": "Ida")
-  );
+    String searchCode = await DatabaseApi.fetchFlightsListCode(
+        selectedCompanies,
+        DateFormat("dd/MM/yyyy").format(departure.value),
+        DateFormat("dd/MM/yyyy").format(returnDate.value),
+        origin.value,
+        destination.value,
+        (searchType == SearchType.round ? "IdaVolta": "Ida")
+    );
 
-  if(searchCode.isNotEmpty) {
-    Get.to(()=>FlightsListPage(searchCode:searchCode,numAdult:numAdult,numChild:numChild,numInfant:numInfant));
+    /*
+    List<String> c = ["AMERICAN AIRLINES", "GOL", "IBERIA", "INTERLINE", "LATAM", "AZUL", "TAP"];
+    String searchCode = await DatabaseApi.fetchFlightsListCode(c, "2/12/2025", "20/12/2025", "GRU", "MIA", "IdaVolta");
+   */
+
+    if(searchCode.isNotEmpty) {
+      Get.to(()=>FlightsListPage(searchCode:searchCode, searchType: searchType , numAdult:numAdult,numChild:numChild,numInfant:numInfant));
+    }
+
   }
-}
-  String? validateLocation(String value){
+
+  String? validateOrigin(String value){
+    if(origin.value.compareTo(destination.value) == 0){
+      return AppLocalizations.of(context)!.origin_destination_same;
+    }
+
+    for (var e in airportsList) {
+      if(value.compareTo("${e.iata} - ${e.name}") == 0){
+        origin.value = e.iata;
+        return null;
+      }
+    }
+
+    return AppLocalizations.of(context)!.valid_value;
+  }
+
+  String? validateDestination(String value){
+    if(origin.value.compareTo(destination.value) == 0){
+      return AppLocalizations.of(context)!.origin_destination_same;
+    }
+
+    for (var e in airportsList) {
+      if(value.compareTo("${e.iata} - ${e.name}") == 0){
+        destination.value = e.iata;
+        return null;
+      }
+    }
+
+    return AppLocalizations.of(context)!.valid_value;
+  }
+
+  String? validateDate(DateTime value){
+    if(departure.value.isAfter(returnDate.value)){
+      return AppLocalizations.of(context)!.date_before;
+    }
+
+
     return null;
   }
-
 
   String? validateNumAdults(int n){
     if(n > 9) {
