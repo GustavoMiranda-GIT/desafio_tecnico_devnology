@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class MultiSelect extends StatefulWidget {
   final List<String> items;
+
   const MultiSelect({super.key, required this.items});
 
   @override
@@ -12,32 +13,22 @@ class MultiSelect extends StatefulWidget {
 class _MultiSelectState extends State<MultiSelect> {
   final List<String> selectedItems = [];
 
-  void itemChange(String itemValue, bool isSelected) {
-    setState(() {
-      if (isSelected) {
-        selectedItems.add(itemValue);
-      } else {
-        selectedItems.remove(itemValue);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(AppLocalizations.of(context)!.select_companies),
       content: SingleChildScrollView(
         child: ListBody(
-          children: widget.items
-              .map((item) => CheckboxListTile(
+          children:
+          widget.items.map((item) => CheckboxListTile(
             value: selectedItems.contains(item),
             title: Text(item),
             controlAffinity: ListTileControlAffinity.leading,
             onChanged: (isChecked) => itemChange(item, isChecked!),
-          ))
-              .toList(),
+          )).toList(),
         ),
       ),
+
       actions: [
         TextButton(
           onPressed: (){ Navigator.pop(context);},
@@ -50,4 +41,15 @@ class _MultiSelectState extends State<MultiSelect> {
       ],
     );
   }
+
+  void itemChange(String itemValue, bool isSelected) {
+    setState(() {
+      if (isSelected) {
+        selectedItems.add(itemValue);
+      } else {
+        selectedItems.remove(itemValue);
+      }
+    });
+  }
+
 }

@@ -1,46 +1,56 @@
 # desafio_tecnico_devnology
 
+Dependências:
 
-Added:
-
---------------------------------------------------------
-
-<uses-permission android:name="android.permission.INTERNET" />
-
-**********************************************
 dependencies:
+    http: ^1.3.0
+    get: ^4.7.2
+    get_storage: ^2.1.1
+    flutter_localizations:
+        sdk: flutter
+    intl: ^0.19.0
 
-http: ^1.3.0
+-----------------------------------------------------------------
 
------------------------
+O aplicativo foi desenvolvido em um Medium Phone tamanho 6,4 Android 15.0("VanillaIceCream").
 
-get: ^4.7.2
+Brevemente testado em:
 
-----------------------------
-get_storage: ^2.1.1
+Android 10.0("Q")
+Android 12.0("S")
+Android 13.0("Tiramisu")
+Android 14.0("UpsideDownCake")
 
-if
 
-Building with plugins requires symlink support.
+Dispositivos:
+Small Phone(4,65)
+Pixel Fold(7,58)
+Pixel Pro XL(6,8)
+Samsung S20FE
+Pixel Tablet
 
-Please enable Developer Mode in your system settings. Run
-start ms-settings:developers
-to open settings.
 
-*active developer mode on windowns
+-----------------------------------------------------------------
 
-----------------------------------------
+* Caso get_storage apresente o seguinte erro, ative o modo desenvolvedor do windows:
+    Building with plugins requires symlink support.
+    Please enable Developer Mode in your system settings. Run
+    start ms-settings:developers
+    to open settings.
 
-flutter_localizations:
-sdk: flutter
+* Caso seja necessário  alterar a ndkVersion:
 
-------------------------------------
-intl: ^0.19.0
+    ndkVersion = "27.0.12077973"
 
-**************************************************
-flutter:
+* Caso seja necessário adicione no pubspec.yaml:
 
-generate: true
+    flutter:
 
-**********************************************
-ndkVersion = "27.0.12077973"
+    generate: true
+
+---------------------------------------------------------------------
+
+Funcionalidades extras:
+
+* Tema escuro (Na tela inicial na Appbar tem Drawer com um botão dentro para mudar o tema);
+* Tradução para inglês (Muda de acordo com o idioma do dispositivo);

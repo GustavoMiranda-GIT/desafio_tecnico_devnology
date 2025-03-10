@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:desafio_tecnico_devnology/pages/home_page.dart';
 import 'package:desafio_tecnico_devnology/theme/theme_controller.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
@@ -8,9 +9,10 @@ import 'package:desafio_tecnico_devnology/l10n/app_localizations.dart';
 void main() async {
   await GetStorage.init();
   Get.lazyPut<ThemeController>(() => ThemeController());
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(MyApp()));
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,5 +32,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
+
 }
 

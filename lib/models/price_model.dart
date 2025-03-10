@@ -58,6 +58,4 @@ class Price{
     debugPrint('   typeMiles: $typeMiles');
   }
 
-
-
 }

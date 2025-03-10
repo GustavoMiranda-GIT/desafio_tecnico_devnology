@@ -44,7 +44,6 @@ class Connection{
     debugPrint('   boardingComplete: $boardingComplete');
   }
 
-
 }
 
 

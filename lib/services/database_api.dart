@@ -15,7 +15,7 @@ class DatabaseApi {
 
     if (response.statusCode == 200) {
       final jsonAirportsList = jsonDecode(response.body) as List;
-      return jsonAirportsList.map((json)=> Airport.fromJson(json)).toList(); //Usa o metodo map para transfomar a lista de json em List<Airport>
+      return jsonAirportsList.map((json)=> Airport.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load airports');
     }
@@ -27,7 +27,8 @@ class DatabaseApi {
     final response = await http.post(
         Uri.parse(BASE_URL + TICKETS_CODE_URL),
         headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+          'accept': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: jsonEncode(<String, dynamic> {
         "Companhias": companies,
@@ -53,7 +54,7 @@ class DatabaseApi {
 
     if (response.statusCode == 200) {
       final jsonFlightList = jsonDecode(response.body)['Voos'] as List;
-      return jsonFlightList.map((json)=> Flight.fromJson(json)).toList(); //Usa o metodo map para transfomar a lista de json em List<Flight>
+      return jsonFlightList.map((json)=> Flight.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load flights list');
     }

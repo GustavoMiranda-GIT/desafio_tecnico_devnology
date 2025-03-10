@@ -47,9 +47,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset : false,
-      appBar: AppBar(leading: Icon(Icons.flight),
-        centerTitle: true,
+      appBar: AppBar(
         title: Text("BuscaMilhas"),
+        leading: Icon(Icons.flight),
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
 
@@ -60,127 +61,119 @@ class _HomePageState extends State<HomePage> {
               title: Text(AppLocalizations.of(context)!.theme),
               onTap: (){ themeController.changeThemeMode();},
             ),
-          ],
-        ),
+          ],),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          spacing: 16,
-          children: [
-            Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  InputTextField(
-                    preIcon: Icon(Icons.flight_takeoff),
-                    hintText: AppLocalizations.of(context)!.origin,
-                    textSelected: origin,
-                    autoCompleteData: autoCompleteList,
-                    validateFunction: validateOrigin,
-                  ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: 16,
+            children: [
+              Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    InputTextField(
+                      preIcon: Icon(Icons.flight_takeoff),
+                      hintText: AppLocalizations.of(context)!.origin,
+                      textSelected: origin,
+                      autoCompleteData: autoCompleteList,
+                      validateFunction: validateOrigin,
+                    ),
 
-                  InputTextField(
-                    preIcon: Icon(Icons.flight_land),
-                    hintText: AppLocalizations.of(context)!.destination,
-                    textSelected: destination,
-                    autoCompleteData: autoCompleteList,
-                    validateFunction: validateDestination,
-                  ),
+                    InputTextField(
+                      preIcon: Icon(Icons.flight_land),
+                      hintText: AppLocalizations.of(context)!.destination,
+                      textSelected: destination,
+                      autoCompleteData: autoCompleteList,
+                      validateFunction: validateDestination,
+                    ),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: RadioListTile<SearchType>(
-                            title: Text(AppLocalizations.of(context)!.round_trip),
-                            value: SearchType.round,
-                            groupValue: searchType,
-                            onChanged: (val){ setState(() {
+                    Row(
+                      children: [
+                        Expanded(
+                          child: RadioListTile<SearchType>(
+                              title: Text(AppLocalizations.of(context)!.round_trip),
+                              value: SearchType.round,
+                              groupValue: searchType,
+                              onChanged: (val){ setState(() {
+                                  searchType = val!;
+                              });}
+                          ),
+                        ),
+
+                        Expanded(
+                          child: RadioListTile<SearchType>(
+                              title: Text(AppLocalizations.of(context)!.one_way),
+                              value: SearchType.oneWay,
+                              groupValue: searchType,
+                              onChanged: (val){ setState(() {
                                 searchType = val!;
-                            }
-                            );
-                            }
+
+                              });}
+                          ),
                         ),
-                      ),
 
-                      Expanded(
-                        child: RadioListTile<SearchType>(
-                            title: Text(AppLocalizations.of(context)!.one_way),
-                            value: SearchType.oneWay,
-                            groupValue: searchType,
-                            onChanged: (val){ setState(() {
-                              searchType = val!;
+                      ],),
 
-                            }
-                            );
-                            }
-                        ),
-                      ),
-                    ],
-                  ),
+                    DateTextField(hintText: AppLocalizations.of(context)!.departure, dateValue: departure, validateFunction: validateDate),
 
-                  DateTextField(hintText: AppLocalizations.of(context)!.departure, dateValue: departure, validateFunction: validateDate,),
+                    Visibility(
+                      visible: searchType == SearchType.round,
+                      child: DateTextField(hintText: AppLocalizations.of(context)!.return_string, dateValue: returnDate, validateFunction: validateDate),
+                    ),
 
-                  Visibility(
-                    visible: searchType == SearchType.round,
-                    child: DateTextField(hintText: AppLocalizations.of(context)!.return_string, dateValue: returnDate, validateFunction: validateDate,),
-                  ),
+                    TextFormField(
+                        readOnly: true,
+                        controller: companiesController,
+                        decoration: InputDecoration(hintText: AppLocalizations.of(context)!.company.capitalize),
+                        onTap: (){ showMultiSelect(); },
+                        validator: (value){
+                          if(value!.isEmpty) {
+                            return AppLocalizations.of(context)!.empty_field;
+                          }
+                          return null;
+                        },
+                    ),
 
+                    NumberInputField(hintText: AppLocalizations.of(context)!.adult,validateFunction: validateNumAdults),
+                    NumberInputField(hintText: AppLocalizations.of(context)!.child,validateFunction: validateNumChild),
+                    NumberInputField(hintText: AppLocalizations.of(context)!.infant,validateFunction: validateNumInfant),
 
-                  TextFormField(
-                      readOnly: true,
-                      controller: companiesController,
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)!.company.capitalize,
-                      ),
-                      onTap: (){ showMultiSelect();},
-                      validator: (value){
-                        if(value!.isEmpty) {
-                          return AppLocalizations.of(context)!.empty_field;
-                        }
-                        return null;
-                      },
-                  ),
-
-                  NumberInputField(hintText: AppLocalizations.of(context)!.adult,validateFunction: validateNumAdults),
-                  NumberInputField(hintText: AppLocalizations.of(context)!.child,validateFunction: validateNumChild),
-                  NumberInputField(hintText: AppLocalizations.of(context)!.infant,validateFunction: validateNumInfant),
-
-                ],),
-            ),
-
-            ElevatedButton(
-              onPressed: () {
-                findFlights();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                padding: EdgeInsets.symmetric(vertical: 16,horizontal: 40)
+                  ],),
               ),
-              child: Text(AppLocalizations.of(context)!.search,style: Theme.of(context).textTheme.bodyLarge),
-            ),
+
+              ElevatedButton(
+                onPressed: () { findFlights(); },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue, padding: EdgeInsets.symmetric(vertical: 16,horizontal: 40)),
+                child: Text(AppLocalizations.of(context)!.search,style: Theme.of(context).textTheme.bodyLarge),
+              ),
 
 
-          ],
+            ],),
         ),
       ),
+
     );
+
   }
 
   Future<void> fetchAirports() async{
     airportsList = await DatabaseApi.fetchAirports();
+
     for (var e in airportsList) {
       autoCompleteList.add("${e.iata} - ${e.name}");
     }
   }
 
   Future<void> findFlights() async {
-
     if(!formKey.currentState!.validate()) {
-    return;
+      return;
     }
+
+    String searchTypeString = (searchType == SearchType.round ? "IdaVolta": "Ida");
 
     String searchCode = await DatabaseApi.fetchFlightsListCode(
         selectedCompanies,
@@ -188,18 +181,37 @@ class _HomePageState extends State<HomePage> {
         DateFormat("dd/MM/yyyy").format(returnDate.value),
         origin.value,
         destination.value,
-        (searchType == SearchType.round ? "IdaVolta": "Ida")
+        searchTypeString,
     );
-
-    /*
-    List<String> c = ["AMERICAN AIRLINES", "GOL", "IBERIA", "INTERLINE", "LATAM", "AZUL", "TAP"];
-    String searchCode = await DatabaseApi.fetchFlightsListCode(c, "2/12/2025", "20/12/2025", "GRU", "MIA", "IdaVolta");
-   */
 
     if(searchCode.isNotEmpty) {
       Get.to(()=>FlightsListPage(searchCode:searchCode, searchType: searchType , numAdult:numAdult,numChild:numChild,numInfant:numInfant));
     }
 
+  }
+
+  void showMultiSelect() async {
+    final List<String> companies = [
+      "AMERICAN AIRLINES",
+      "GOL",
+      "IBERIA",
+      "INTERLINE",
+      "LATAM",
+      "AZUL",
+      "TAP"
+    ];
+
+    final List<String>? results = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return MultiSelect(items: companies);
+      },
+    );
+
+    if (results != null) {
+      companiesController.text= results.join(" , ");
+      selectedCompanies.value = results;
+    }
   }
 
   String? validateOrigin(String value){
@@ -233,10 +245,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   String? validateDate(DateTime value){
+    if(searchType == SearchType.oneWay) {
+      returnDate.value= DateTime(departure.value.year,departure.value.month,departure.value.day+1);
+      return null;
+    }
+
     if(departure.value.isAfter(returnDate.value)){
       return AppLocalizations.of(context)!.date_before;
     }
 
+    if(departure.value == returnDate.value){
+      return AppLocalizations.of(context)!.date_before;
+    }
 
     return null;
   }
@@ -269,33 +289,5 @@ class _HomePageState extends State<HomePage> {
       return null;
     }
   }
-
-  void showMultiSelect() async {
-    final List<String> companies = [
-      "AMERICAN AIRLINES",
-      "GOL",
-      "IBERIA",
-      "INTERLINE",
-      "LATAM",
-      "AZUL",
-      "TAP"
-    ];
-
-    final List<String>? results = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return MultiSelect(items: companies);
-      },
-    );
-
-    // Update UI
-    if (results != null) {
-       companiesController.text= results.join(" , ");
-       selectedCompanies.value = results;
-    }
-  }
-
-
-
-
+  
 }

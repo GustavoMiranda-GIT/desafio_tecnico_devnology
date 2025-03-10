@@ -12,9 +12,7 @@ class FlightListItem extends StatelessWidget {
   final Flight flight;
   final FlightsListController listController;
 
-
   const FlightListItem({super.key, required this.flight, required this.listController,});
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +28,10 @@ class FlightListItem extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: (){flight.printFlight(); flightSelectPopup(context);},//Remover Print
+      onTap: (){flightSelectPopup(context);},
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         color: Theme.of(context).colorScheme.primary,
-
         child: Padding(
           padding: const EdgeInsets.all(14.0),
           child: Column(
@@ -78,10 +73,10 @@ class FlightListItem extends StatelessWidget {
                           style: Theme.of(context).textTheme.headlineMedium)
                       ),
 
-                    ],
-                  ),
+                    ],),
+
                 ],),
-//-------------------------------------------------------------------------------------------------
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -91,7 +86,6 @@ class FlightListItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall),
 
                   ),
-
                 ],),
 
             ],),
@@ -99,7 +93,9 @@ class FlightListItem extends StatelessWidget {
         ),
       ),
     );
+
   }
+
 
   String getNConnectionsText(BuildContext context){
     String connectionsText = "";
@@ -119,7 +115,6 @@ class FlightListItem extends StatelessWidget {
     String dateString = DateFormat(AppLocalizations.of(context)!.date_display_format).format(date);
     return dateString;
   }
-
 
   double getTotalPrice(FareType fareType){
     bool usingMiles = listController.usingMiles.value;
@@ -190,33 +185,32 @@ class FlightListItem extends StatelessWidget {
             alignment: Alignment.center,
             width: double.infinity,
             height: 400,
-            child: Row(
-              spacing: 16,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(listPrices.length, (index){
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: 16,
-                    children:[
-                      Text(listPrices[index].typeMiles.toString(), style: Theme.of(context).textTheme.headlineMedium),
-                      Text("${getCurrencySymbol(context)} ${getTotalPrice(listPrices[index].fareType).toStringAsFixed(2)}", style: Theme.of(context).textTheme.headlineSmall),
-                      ElevatedButton(
-                          onPressed: (){
-                            selectFlight(listPrices[index].fareType);
-                          },
-                          child: Text(AppLocalizations.of(context)!.select, style: Theme.of(context).textTheme.bodyLarge))
-
-                    ],);
-
-                  },),
-
-
+            child: FittedBox(
+              child: Row(
+                spacing: 16,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(listPrices.length, (index){
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 16,
+                      children:[
+                        Text(listPrices[index].typeMiles.toString(), style: Theme.of(context).textTheme.headlineMedium),
+                        Text("${getCurrencySymbol(context)} ${getTotalPrice(listPrices[index].fareType).toStringAsFixed(2)}", style: Theme.of(context).textTheme.headlineSmall),
+                        ElevatedButton(
+                            onPressed: (){
+                              selectFlight(listPrices[index].fareType);
+                            },
+                            child: Text(AppLocalizations.of(context)!.select, style: Theme.of(context).textTheme.bodyLarge))
+              
+                      ],);
+              
+                    },),
+              
+              ),
             ),
           ),
-
-
-
+          
         );},
     );
   }
@@ -227,8 +221,8 @@ class FlightListItem extends StatelessWidget {
       listController.fareTypeOrigin = fareType;
 
       if(listController.searchType == SearchType.oneWay){
-        listController.flightDestination = flight;//Inicializado aqui somente para mostrar tela de resultados sem erro (Linha removida futuramente);
-        listController.fareTypeDestination = fareType;//Inicializado aqui somente para mostrar tela de resultados sem erro (Linha removida futuramente);
+        listController.flightDestination = flight;//Inicializado aqui somente para mostrar tela de selecionados sem erro (Linha removida futuramente);
+        listController.fareTypeDestination = fareType;//Inicializado aqui somente para mostrar tela de selecionados sem erro (Linha removida futuramente);
         Get.back();
         Get.to(()=>SelectedFlightsPage(listController: listController));
       }else{

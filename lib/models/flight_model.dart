@@ -106,7 +106,6 @@ class Flight {
       e.printPrice();
       debugPrint('-----------------------');
     }
-
   }
 
 }

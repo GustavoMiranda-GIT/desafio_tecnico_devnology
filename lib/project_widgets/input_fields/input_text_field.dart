@@ -24,10 +24,7 @@ class InputTextField extends StatelessWidget {
           return item.toLowerCase().contains(textEditingValue.text.toLowerCase());
         });
       },
-      onSelected: (selectedString){
-        textSelected.value = selectedString;
-      },
-
+      onSelected: (selectedString){ textSelected.value = selectedString; },
 
       fieldViewBuilder: (context, controller, focusNode, onEditingComplete){
         return TextFormField(
@@ -42,6 +39,7 @@ class InputTextField extends StatelessWidget {
                 child: preIcon,
               )
           ),
+
           validator: (value){
             if(value!.isEmpty) {
               return AppLocalizations.of(context)!.empty_field;
@@ -55,7 +53,6 @@ class InputTextField extends StatelessWidget {
 
 
     );
-
-
   }
+
 }

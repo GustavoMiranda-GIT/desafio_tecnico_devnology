@@ -14,6 +14,7 @@ class FlightsListPage extends StatefulWidget {
   final SearchType searchType;
 
   const FlightsListPage({super.key, required this.searchCode, required this.numAdult, required this.numChild, required this.numInfant, required this.searchType});
+
   @override
   State<FlightsListPage> createState() => _FlightsListPageState();
 }
@@ -40,17 +41,9 @@ class _FlightsListPageState extends State<FlightsListPage> {
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
-          Obx(()=>Text(getCurrencySymbol(context), style: Theme.of(context).textTheme.headlineSmall)
-          ),
-
-          Obx(()=>Switch(
-            value: listController.usingMiles.value,
-            onChanged: (value){
-              listController.usingMiles.value = value;
-            })
-          ),
+          Obx(()=>Text(getCurrencySymbol(context), style: Theme.of(context).textTheme.headlineSmall)),
+          Obx(()=>Switch(value: listController.usingMiles.value, onChanged: (value){ listController.usingMiles.value = value;})),
         ]
-
       ),
 
       body: Obx((){return stateManagement(listController.state.value);}),
@@ -59,9 +52,9 @@ class _FlightsListPageState extends State<FlightsListPage> {
 
   _success(){
     if(listController.showReturnList.value){
-      filteredList = listController.flightsList.where((e)=> e.flightDirection ==FlightDirection.returnDirection).toList();
+      filteredList = listController.flightsList.where((e)=> e.flightDirection == FlightDirection.returnDirection).toList();
     }else{
-      filteredList = listController.flightsList.where((e)=> e.flightDirection ==FlightDirection.departure).toList();
+      filteredList = listController.flightsList.where((e)=> e.flightDirection == FlightDirection.departure).toList();
     }
 
     return ListView.builder(
@@ -72,8 +65,8 @@ class _FlightsListPageState extends State<FlightsListPage> {
         return Padding(
           padding: EdgeInsets.only(bottom: 0),
           child: FlightListItem(flight: flight, listController:listController),
-        );},
-
+        );
+      },
     );
   }
 
@@ -84,9 +77,10 @@ class _FlightsListPageState extends State<FlightsListPage> {
       case FlightsListState.loading:
         return Center(child: CircularProgressIndicator());
       case FlightsListState.error:
-        return Center( child: ElevatedButton(
-          onPressed: (){ listController.start(Get.arguments["searchCode"]); },
-          child: Text(AppLocalizations.of(context)!.try_again),
+        return Center(
+          child: ElevatedButton(
+            onPressed: (){ listController.start(widget.searchCode); },
+            child: Text(AppLocalizations.of(context)!.try_again),
         ),);
       case FlightsListState.success:
         return _success();

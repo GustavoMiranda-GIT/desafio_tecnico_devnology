@@ -12,14 +12,10 @@ class NumberInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: (text){},
-      decoration: InputDecoration(
-        label: Text(hintText),
-        hintText: hintText,
-      ),
+      decoration: InputDecoration( label: Text(hintText), hintText: hintText,),
       keyboardType: TextInputType.number,
-      inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.digitsOnly
-      ],
+      inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+
       validator: (value){
         if(value!.isEmpty) {
           return AppLocalizations.of(context)!.empty_field;
@@ -28,5 +24,7 @@ class NumberInputField extends StatelessWidget {
         }
       },
 
-    );}
+    );
+  }
+
 }
