@@ -53,5 +53,5 @@ Pixel Tablet
 
 Funcionalidades extras:
 
-* Tema escuro (Na tela inicial na Appbar tem Drawer com um botão dentro para mudar o tema);
+* Tema escuro (Na tela inicial na Appbar tem um Drawer com um botão para mudar o tema);
 * Tradução para inglês (Muda de acordo com o idioma do dispositivo);
