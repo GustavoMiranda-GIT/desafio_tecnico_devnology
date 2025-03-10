@@ -55,3 +55,37 @@ Funcionalidades extras:
 
 * Tema escuro (Na tela inicial na Appbar tem um Drawer com um botão para mudar o tema);
 * Tradução para inglês (Muda de acordo com o idioma do dispositivo);
+
+---------------------------------------------------------------------
+
+Caso necessario pode-se adicionar na classe FlightListItem linha 31, dentro da função onTap
+a seguinte linha de código: flight.printFlight();
+isso fará com que quando se clique em um voo print no terminal suas informações
+
+---------------------------------------------------------------------
+
+Gostaria de lembrar que esta vindo da base de dados o preço da passagem das crinças como 0 
+e os bebes tendo valor o que é o contrario ao pedido no desafio.
+Exemplo:
+"Valor": [
+        {
+          "Adulto": 2043.1307412582748,
+          "Bebe": 2043.1307412582748,
+          "Crianca": 0,
+          "Executivo": false,
+          "LimiteBagagem": {
+            "BagagemDespachada": {
+              "23kg": 2
+            },
+            "BagagemMao": {
+              "10kg": 1
+            }
+          },
+          "TaxaEmbarque": 227.014526806475,
+          "TipoValor": "Start",
+          "TipoMilhas": "Start"
+        }
+      ],
+
+
+
