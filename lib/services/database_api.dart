@@ -3,6 +3,7 @@ import 'package:desafio_tecnico_devnology/models/airport_model.dart';
 import 'package:desafio_tecnico_devnology/models/flight_model.dart';
 import 'package:http/http.dart' as http;
 
+//Chaves da API devem ser criptografadas futuramente
 const String BASE_URL = 'https://buscamilhas.mock.gralmeidan.dev/';
 const String AIRPORTS_URL = 'aeroportos';
 const String TICKETS_CODE_URL = 'busca/criar';
